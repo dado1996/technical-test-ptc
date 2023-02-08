@@ -97,6 +97,7 @@ const QuestionsComponent = ({ score }) => {
 								...prev,
 								[`slider-${i}`]: v
 							}))}
+							ju
 						>
 							<SliderMark value={0} {...labelStyles}>
 								Disagree
