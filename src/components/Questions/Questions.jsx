@@ -52,13 +52,6 @@ const QuestionsComponent = ({ score }) => {
     setButton(false);
   }, [slidersValue]);
 
-  const handleSent = () => {
-    setSent(true);
-    setTimeout(() => {
-      router.push("/");
-    }, 4000);
-  };
-
   const handleChange = (event, i) => {
     let tmp = [...comments];
     tmp[i] = event.target.value;
@@ -75,6 +68,9 @@ const QuestionsComponent = ({ score }) => {
 
   const saveAnswers = async () => {
     setSent(true);
+    setTimeout(() => {
+      router.push("/");
+    }, 4000);
   };
 
   return (
@@ -89,17 +85,18 @@ const QuestionsComponent = ({ score }) => {
       <Stack direction="column" gap={10} mt={10} ml={20} width="30%">
         {sent ? (
           <Box
-            bg="#ccc"
+            bg="white"
             width="100%"
-            height="80px"
             p="15px 10px"
             border="1px solid #ccc"
-            borderRadius={15}
+            pr="35px"
+            pl={10}
+            mb={10}
           >
             <Text fontSize="16pt" fontWeight={600} color="black" mb={20}>
               Thanks for your feedback
             </Text>
-            <Text color="black" fontSize="10pt">
+            <Text color="#ccc" fontSize="10pt">
               Your feedback has been sent. Have a lovely day.
             </Text>
           </Box>
