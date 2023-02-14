@@ -23,11 +23,11 @@ const QuestionItem = ({
       width="100%"
       p="15px 10px"
       border="1px solid #ccc"
-      pr="35px"
-      pl={10}
       mb={10}
+      pl="30px"
+      pr="50px"
     >
-      <Text color="#999" top={0}>{`${i + 1} of ${length}`}</Text>
+      <Text color="#999" top={0} fontSize="8pt">{`${i + 1} of ${length}`}</Text>
       <Text color="#2ce6ce">{q.topic}</Text>
       <Text color="#666" mb={20} fontSize="15pt" onClick={handleShowComment}>
         {q.text}
