@@ -1,16 +1,9 @@
 import { Box, Input, Text, Textarea } from "@chakra-ui/react";
 import { useState } from "react";
 import SliderComponent from "./Slider";
+import { Controller } from "react-hook-form";
 
-const QuestionItem = ({
-  q,
-  i,
-  length,
-  comment,
-  handleChangeComment,
-  value,
-  handleChangeValue,
-}) => {
+const QuestionItem = ({ q, i, length, control }) => {
   const [showComment, setShowComment] = useState(false);
 
   const handleShowComment = () => {
@@ -33,7 +26,7 @@ const QuestionItem = ({
         {q.text}
       </Text>
 
-      <SliderComponent value={value} handleValue={handleChangeValue} />
+      <SliderComponent control={control} i={i + 1} />
 
       <Text
         hidden={showComment}
@@ -46,16 +39,21 @@ const QuestionItem = ({
       >
         Add comment
       </Text>
-      <Textarea
-        width="100%"
-        border="1px solid #ccc"
-        p={10}
-        borderRadius={4}
-        hidden={!showComment}
-        type="text"
-        placeholder={`Anything to add for ${q.topic}?`}
-        value={comment}
-        onChange={(event) => handleChangeComment(event, i)}
+      <Controller
+        name={`comment-${i + 1}`}
+        control={control}
+        render={({ field }) => (
+          <Textarea
+            {...field}
+            width="100%"
+            border="1px solid #ccc"
+            p={10}
+            borderRadius={4}
+            hidden={!showComment}
+            type="text"
+            placeholder={`Anything to add for ${q.topic}?`}
+          />
+        )}
       />
     </Box>
   );
