@@ -1,9 +1,25 @@
 import { Flex, Stack, Icon, Text, Box, Image } from "@chakra-ui/react";
+import { useState, useEffect } from "react"; 
 import { useRouter } from "next/router";
 import FooterComponent from "../Layout/Footer";
 
 const Home = () => {
   const router = useRouter();
+  const [company, setCompany] = useState("");
+
+  useEffect(() => {
+    getCompanyName();
+  }, []);
+
+  const getCompanyName = async () => {
+    try {
+      const response = await fetch("/questions.json");
+      const result = await response.json();
+      setCompany(result.company_name);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Flex
@@ -29,7 +45,7 @@ const Home = () => {
         bg="white"
       >
         <Text fontSize="8pt" mt={10}>
-          <strong>DEMO INC.</strong> would like to know:
+          <strong>{company}</strong> would like to know:
         </Text>
         <Text fontSize="16pt" mt={0} fontWeight={700}>
           How is your week going?
