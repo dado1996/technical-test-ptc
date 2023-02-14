@@ -32,6 +32,7 @@ const SliderComponent = ({ i, control }) => {
           color="black"
           colorScheme="whatsapp"
           minHeight="36px"
+          step={10}
         >
           <SliderMark value={0} {...labelStyles}>
             Disagree
