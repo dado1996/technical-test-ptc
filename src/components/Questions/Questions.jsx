@@ -94,11 +94,19 @@ const QuestionsComponent = ({ score }) => {
 
   const onSubmit = async (values) => {
     try {
+      let data = {};
+      for (let i = 0; i < questions.length; i++) {
+        data[`question${i + 1}`] = {
+          value: values[`value-${i + 1}`],
+          comment: values[`comment-${i + 1}`],
+        };
+      }
       const response = await fetch(process.env.NEXT_PUBLIC_API_URL, {
         method: "POST",
         body: {
-          ...values,
+          ...data,
           mood: actualScore,
+          user: "UserExample",
         },
         headers: {
           "Content-Type": "application/json",
